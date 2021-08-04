@@ -1,4 +1,4 @@
-package com.example.dexter
+package com.example.dexter.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
