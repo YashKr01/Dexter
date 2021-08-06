@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="@dimen/_4sdp"
     android:elevation="@dimen/_4sdp"
     app:cardCornerRadius="@dimen/_8sdp">
@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/itemJobLogo"
+            android:id="@+id/itemSavedJobLogo"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:layout_marginStart="@dimen/_10sdp"
@@ -23,18 +23,20 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/app_icon" />
 
-        <CheckBox
-            android:id="@+id/itemCheckBox"
+        <ImageView
+            android:id="@+id/imageDelete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:button="@drawable/bookmark_selector"
+            android:contentDescription="@string/app_name"
             android:gravity="center_vertical|center_horizontal"
             android:padding="0dp"
+            android:src="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textJobTitle" />
+            app:layout_constraintTop_toTopOf="@id/itemSavedJobLogo"
+            app:tint="@color/colorRed" />
 
         <TextView
-            android:id="@+id/textJobTitle"
+            android:id="@+id/itemSavedJobTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -44,35 +46,35 @@
             android:maxLines="1"
             android:textColor="@color/lightPrimaryTextColor"
             android:textSize="@dimen/_18ssp"
-            app:layout_constraintEnd_toStartOf="@id/itemCheckBox"
-            app:layout_constraintStart_toEndOf="@id/itemJobLogo"
+            app:layout_constraintEnd_toStartOf="@id/imageDelete"
+            app:layout_constraintStart_toEndOf="@id/itemSavedJobLogo"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Java Developer" />
 
         <TextView
-            android:id="@+id/textJobCompanyName"
+            android:id="@+id/itemSavedJobCompanyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_medium"
             android:textColor="@color/lightSecondaryTextColor"
             android:textSize="@dimen/_16ssp"
-            app:layout_constraintStart_toStartOf="@id/textJobTitle"
-            app:layout_constraintTop_toBottomOf="@id/textJobTitle"
+            app:layout_constraintStart_toStartOf="@id/itemSavedJobTitle"
+            app:layout_constraintTop_toBottomOf="@id/itemSavedJobTitle"
             tools:text="Microsoft" />
 
         <TextView
-            android:id="@+id/itemJobSalary"
+            android:id="@+id/itemJobSavedSalary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_regular"
             android:textColor="@color/lightSecondaryTextColor"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintStart_toStartOf="@id/textJobTitle"
-            app:layout_constraintTop_toBottomOf="@id/textJobCompanyName"
+            app:layout_constraintStart_toStartOf="@id/itemSavedJobTitle"
+            app:layout_constraintTop_toBottomOf="@id/itemSavedJobCompanyName"
             tools:text="$50-$300 USD per year" />
 
         <TextView
-            android:id="@+id/textJobType"
+            android:id="@+id/itemJobSavedType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -84,15 +86,15 @@
             android:paddingBottom="@dimen/_4sdp"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/textJobTitle"
-            app:layout_constraintTop_toBottomOf="@id/itemJobSalary"
+            app:layout_constraintStart_toStartOf="@id/itemSavedJobTitle"
+            app:layout_constraintTop_toBottomOf="@id/itemJobSavedSalary"
             app:layout_constraintVertical_bias="0.0"
             tools:background="@drawable/text_background_green"
             tools:text="Full- Time"
             tools:textColor="@color/colorGreenDark" />
 
         <TextView
-            android:id="@+id/itemJobDate"
+            android:id="@+id/itemJobSavedDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_4sdp"
@@ -102,9 +104,9 @@
             android:textColor="@color/lightSecondaryTextColor"
             android:textSize="@dimen/_10ssp"
             app:drawableStartCompat="@drawable/ic_date"
-            app:layout_constraintBottom_toBottomOf="@id/textJobType"
+            app:layout_constraintBottom_toBottomOf="@id/itemJobSavedType"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textJobType"
+            app:layout_constraintTop_toTopOf="@id/itemJobSavedType"
             tools:text="2020-08-12" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
