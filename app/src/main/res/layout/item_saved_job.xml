@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/_4sdp"
     android:elevation="@dimen/_4sdp"
     app:cardCornerRadius="@dimen/_8sdp">
@@ -27,12 +27,13 @@
             android:id="@+id/imageDelete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
             android:contentDescription="@string/app_name"
             android:gravity="center_vertical|center_horizontal"
             android:padding="0dp"
             android:src="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/itemSavedJobLogo"
+            app:layout_constraintTop_toTopOf="@id/itemSavedJobTitle"
             app:tint="@color/colorRed" />
 
         <TextView
@@ -89,9 +90,9 @@
             app:layout_constraintStart_toStartOf="@id/itemSavedJobTitle"
             app:layout_constraintTop_toBottomOf="@id/itemJobSavedSalary"
             app:layout_constraintVertical_bias="0.0"
-            tools:background="@drawable/text_background_green"
+            tools:background="@drawable/text_background_yellow"
             tools:text="Full- Time"
-            tools:textColor="@color/colorGreenDark" />
+            tools:textColor="@color/colorYellowDark" />
 
         <TextView
             android:id="@+id/itemJobSavedDate"
