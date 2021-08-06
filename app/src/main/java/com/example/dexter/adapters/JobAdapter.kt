@@ -10,9 +10,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.dexter.R
 import com.example.dexter.databinding.ItemJobBinding
+import com.example.dexter.listeners.ItemClickListener
 import com.example.dexter.model.JobEntity
 
-class JobAdapter(private val context: Context, private val list: ArrayList<JobEntity>) :
+class JobAdapter(
+    private val context: Context,
+    private val list: ArrayList<JobEntity>,
+    private val listener: ItemClickListener
+) :
     ListAdapter<JobEntity, JobAdapter.ItemViewHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
@@ -28,6 +33,8 @@ class JobAdapter(private val context: Context, private val list: ArrayList<JobEn
         fun bind(job: JobEntity) {
             view.apply {
 
+                root.setOnClickListener { listener.onItemClicked(job) }
+                itemCheckBox.setOnClickListener { listener.onCheckboxClicked(job) }
                 textJobTitle.text = job.companyName
                 textJobCompanyName.text = job.companyName
                 textJobDate.text = job.date
