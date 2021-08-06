@@ -1,3 +1,8 @@
 package com.example.dexter.model
 
-data class JobResponse(val jobResponse: List<JobEntity>)
+import com.google.gson.annotations.SerializedName
+
+data class JobResponse(
+    @SerializedName("jobs")
+    val jobResponse: List<JobEntity>
+)

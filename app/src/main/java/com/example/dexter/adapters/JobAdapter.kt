@@ -28,18 +28,18 @@ class JobAdapter(private val context: Context, private val list: ArrayList<JobEn
         fun bind(job: JobEntity) {
             view.apply {
 
-                textJobTitle.text = job.company_name
-                textJobCompanyName.text = job.company_name
-                textJobDate.text = job.publication_date
+                textJobTitle.text = job.companyName
+                textJobCompanyName.text = job.companyName
+                textJobDate.text = job.date
 
                 Glide.with(context)
-                    .load(job.company_logo_url)
+                    .load(job.image)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(itemJobLogo)
 
                 textJobType.isAllCaps = true
-                if (job.job_type == "full_time") {
-                    textJobType.text = job.job_type
+                if (job.type == "full_time") {
+                    textJobType.text = job.type
                     textJobType.setTextColor(
                         ContextCompat.getColor(
                             context,
@@ -49,7 +49,7 @@ class JobAdapter(private val context: Context, private val list: ArrayList<JobEn
                     textJobType.background =
                         ContextCompat.getDrawable(context, R.drawable.text_background_green)
                 } else {
-                    textJobType.text = job.job_type
+                    textJobType.text = job.type
                     textJobType.setTextColor(
                         ContextCompat.getColor(
                             context,
