@@ -19,6 +19,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private var visible = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,8 +42,10 @@ class HomeFragment : Fragment() {
 
     private fun onConnectionAvailable() {
 
+        visible = true
+
         binding.textNetworkStatus.apply {
-            text = "Connected"
+            text = context.getString(R.string.connected)
             setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_connected, 0, 0, 0)
         }
 
@@ -49,11 +53,11 @@ class HomeFragment : Fragment() {
             setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorGreenDark))
             animate()
                 .alpha(1f)
-                .setStartDelay(1000L)
-                .setDuration(1000L)
+                .setStartDelay(1500L)
+                .setDuration(1500L)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
-                        visibility = View.GONE
+                        if(visible) visibility = View.GONE
                     }
                 }).start()
         }
@@ -62,8 +66,10 @@ class HomeFragment : Fragment() {
 
     private fun onConnectionUnavailable() {
 
+        visible = false
+
         binding.textNetworkStatus.apply {
-            text = "No Connection"
+            text = context.getString(R.string.no_connection)
             setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_not_connected, 0, 0, 0)
         }
 
