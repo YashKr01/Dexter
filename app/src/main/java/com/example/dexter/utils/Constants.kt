@@ -1,7 +1,9 @@
 package com.example.dexter.utils
 
-object Constants {
+class Constants {
 
-    const val BASE_URL = "https://remotive.io/api/"
+    companion object {
+        const val BASE_URL = "https://remotive.io/api/"
+    }
 
 }

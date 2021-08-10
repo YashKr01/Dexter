@@ -2,7 +2,7 @@ package com.example.dexter.di
 
 import android.content.Context
 import com.example.dexter.api.ApiInterface
-import com.example.dexter.utils.Constants.BASE_URL
+import com.example.dexter.utils.Constants.Companion.BASE_URL
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides

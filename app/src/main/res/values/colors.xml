@@ -12,4 +12,5 @@
     <color name="colorYellowLight">#FFF155</color>
     <color name="colorRed">#F44336</color>
     <color name="LightBackground">#FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
