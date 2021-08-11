@@ -8,16 +8,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dexter.R
+import com.example.dexter.adapters.JobAdapter
 import com.example.dexter.databinding.FragmentHomeBinding
+import com.example.dexter.listeners.ItemClickListener
+import com.example.dexter.model.JobEntity
 import com.example.dexter.utils.NetworkUtils
+import com.example.dexter.viewmodels.JobViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<JobViewModel>()
 
     private var visible = false
 
@@ -32,11 +40,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Observing Connectivity
         NetworkUtils.observeConnectivity(requireContext())
             .observe(viewLifecycleOwner) { isConnected ->
                 if (isConnected) onConnectionAvailable()
                 else onConnectionUnavailable()
             }
+
+        val jobAdapter = JobAdapter(requireContext(), ArrayList(), this)
+        binding.jobRecyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = jobAdapter
+        }
+
+        viewModel.getJobList().observe(viewLifecycleOwner) {
+            jobAdapter.submitList(it)
+        }
 
     }
 
@@ -57,7 +77,7 @@ class HomeFragment : Fragment() {
                 .setDuration(1500L)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
-                        if(visible) visibility = View.GONE
+                        if (visible) visibility = View.GONE
                     }
                 }).start()
         }
@@ -78,6 +98,15 @@ class HomeFragment : Fragment() {
             setBackgroundColor(context.getColor(R.color.colorRed))
         }
 
+    }
+
+    override fun onItemClicked(jobEntity: JobEntity) {
+    }
+
+    override fun onCheckboxClicked(jobEntity: JobEntity) {
+    }
+
+    override fun onDelete(jobEntity: JobEntity) {
     }
 
 }

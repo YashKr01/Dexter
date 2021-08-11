@@ -23,9 +23,11 @@ class JobAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
         ItemViewHolder(ItemJobBinding.inflate(LayoutInflater.from(context), parent, false))
 
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+    }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) =
-        holder.bind(list[position])
 
     inner class ItemViewHolder(private val view: ItemJobBinding) :
         RecyclerView.ViewHolder(view.root) {
@@ -35,7 +37,7 @@ class JobAdapter(
 
                 root.setOnClickListener { listener.onItemClicked(job) }
                 itemCheckBox.setOnClickListener { listener.onCheckboxClicked(job) }
-                textJobTitle.text = job.companyName
+                textJobTitle.text = job.title
                 textJobCompanyName.text = job.companyName
                 textJobDate.text = job.date
 
