@@ -2,7 +2,7 @@
     android:width="@dimen/_32sdp"
     android:height="@dimen/_32sdp"
     android:tint="@color/lightIconColor"
-    android:viewportWidth="26"
+    android:viewportWidth="30"
     android:viewportHeight="24">
     <path
         android:fillColor="@color/lightIconColor"

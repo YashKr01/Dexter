@@ -40,6 +40,7 @@ class JobAdapter(
                 textJobTitle.text = job.title
                 textJobCompanyName.text = job.companyName
                 textJobDate.text = job.date
+                itemJobSalary.text = job.salary
 
                 Glide.with(context)
                     .load(job.image)
