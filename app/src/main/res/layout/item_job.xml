@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_4sdp"
-    android:elevation="@dimen/_4sdp"
+    android:elevation="@dimen/_8sdp"
     app:cardCornerRadius="@dimen/_8sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,9 +28,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:button="@drawable/bookmark_selector"
+            android:foregroundGravity="center"
             android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/textJobTitle" />
 
         <TextView
             android:id="@+id/textJobTitle"

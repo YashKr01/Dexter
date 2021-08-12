@@ -17,21 +17,20 @@ import javax.inject.Inject
 @HiltViewModel
 class JobViewModel @Inject constructor(private val repository: AppRepository) : ViewModel() {
 
-    var jobList = MutableLiveData<List<JobEntity>>()
+    private var jobList = MutableLiveData<List<JobEntity>>()
 
-    fun getJobList(): LiveData<List<JobEntity>> {
-
+    fun getJobList() {
         repository.getJobList("25").enqueue(object : Callback<JobResponse> {
+
             override fun onResponse(call: Call<JobResponse>, response: Response<JobResponse>) {
                 if (response.isSuccessful && response.code() == 200) jobList.postValue(response.body()?.jobResponse)
                 else jobList.postValue(null)
             }
 
             override fun onFailure(call: Call<JobResponse>, t: Throwable) = jobList.postValue(null)
-
         })
-
-        return jobList
     }
+
+    fun observeList(): LiveData<List<JobEntity>> = jobList
 
 }

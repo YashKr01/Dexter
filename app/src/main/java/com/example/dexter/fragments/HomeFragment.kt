@@ -54,9 +54,8 @@ class HomeFragment : Fragment(), ItemClickListener {
             adapter = jobAdapter
         }
 
-        viewModel.getJobList().observe(viewLifecycleOwner) {
-            jobAdapter.submitList(it)
-        }
+        viewModel.getJobList()
+        viewModel.observeList().observe(viewLifecycleOwner) { jobAdapter.submitList(it) }
 
     }
 
