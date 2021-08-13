@@ -62,6 +62,18 @@ class HomeFragment : Fragment(), JobItemClickListener {
 
     }
 
+    override fun onCheckboxCheckedListener(jobEntity: JobEntity) {
+        viewModel.insertJob(jobEntity)
+    }
+
+    override fun onCheckboxUncheckedListener(jobEntity: JobEntity) {
+
+    }
+
+    override fun onJobItemClick(jobEntity: JobEntity) {
+
+    }
+
     private fun onConnectionAvailable() {
 
         visible = true
@@ -101,18 +113,5 @@ class HomeFragment : Fragment(), JobItemClickListener {
         }
 
     }
-
-    override fun onCheckboxCheckedListener(jobEntity: JobEntity) {
-        viewModel.insertJob(jobEntity)
-    }
-
-    override fun onCheckboxUncheckedListener(jobEntity: JobEntity) {
-
-    }
-
-    override fun onJobItemClick(jobEntity: JobEntity) {
-
-    }
-
 
 }

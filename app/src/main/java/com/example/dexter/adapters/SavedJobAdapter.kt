@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.dexter.R
 import com.example.dexter.databinding.ItemSavedJobBinding
-import com.example.dexter.listeners.ItemClickListener
 import com.example.dexter.listeners.SavedJobItemClickListener
 import com.example.dexter.model.JobEntity
 

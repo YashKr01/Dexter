@@ -41,5 +41,7 @@ class JobViewModel @Inject constructor(
     fun deleteJob(jobEntity: JobEntity) =
         viewModelScope.launch { databaseRepository.deleteSavedJob(jobEntity) }
 
+    fun getSavedJobList(): LiveData<List<JobEntity>> = databaseRepository.getSavedJobs()
+
 
 }

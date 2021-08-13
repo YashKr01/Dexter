@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dexter.adapters.JobAdapter
 import com.example.dexter.adapters.SavedJobAdapter
 import com.example.dexter.databinding.FragmentSavedBinding
-import com.example.dexter.listeners.ItemClickListener
 import com.example.dexter.listeners.SavedJobItemClickListener
 import com.example.dexter.model.JobEntity
 import com.example.dexter.viewmodels.SavedJobViewModel

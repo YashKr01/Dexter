@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.dexter.R
 import com.example.dexter.databinding.ItemJobBinding
-import com.example.dexter.listeners.ItemClickListener
 import com.example.dexter.listeners.JobItemClickListener
 import com.example.dexter.model.JobEntity
 
@@ -52,27 +51,24 @@ class JobAdapter(
                     .into(itemJobLogo)
 
                 textJobType.isAllCaps = true
+
                 if (job.type == "full_time") {
                     textJobType.text = job.type
-                    textJobType.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.colorGreenDark
-                        )
-                    )
+                    textJobType
+                        .setTextColor(ContextCompat.getColor(context, R.color.colorGreenDark))
                     textJobType.background =
                         ContextCompat.getDrawable(context, R.drawable.text_background_green)
-                } else {
+                }
+
+                else {
                     textJobType.text = job.type
-                    textJobType.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            R.color.colorYellowDark
-                        )
-                    )
+                    textJobType
+                        .setTextColor(ContextCompat.getColor(context, R.color.colorYellowDark))
                     textJobType.background =
                         ContextCompat.getDrawable(context, R.drawable.text_background_yellow)
                 }
+
+
             }
         }
 
