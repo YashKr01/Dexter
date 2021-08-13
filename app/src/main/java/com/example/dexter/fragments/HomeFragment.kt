@@ -72,8 +72,8 @@ class HomeFragment : Fragment(), ItemClickListener {
             setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorGreenDark))
             animate()
                 .alpha(1f)
-                .setStartDelay(1500L)
-                .setDuration(1500L)
+                .setStartDelay(3000L)
+                .setDuration(3000L)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
                         if (visible) visibility = View.GONE

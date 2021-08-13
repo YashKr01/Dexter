@@ -4,4 +4,15 @@
         <!-- Primary brand color. -->
         <item name="android:statusBarColor">@color/colorPrimaryBlue</item>
     </style>
+
+    <style name="ToolbarStyleExpanded" parent="Theme.Dexter">
+        <item name="fontFamily">@font/ubuntu_medium</item>
+        <item name="android:fontFamily">@font/ubuntu_medium</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="ToolbarStyleCollapsed" parent="ToolbarStyleExpanded">
+        <item name="android:textSize">@dimen/_16ssp</item>
+    </style>
+
 </resources>
