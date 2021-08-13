@@ -7,6 +7,19 @@
     android:background="@color/colorPrimaryBlue"
     tools:context=".fragments.HomeFragment">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/_8sdp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusable="true"
+        app:backgroundTint="@color/colorYellowDark"
+        android:src="@drawable/ic_fab_bookmark"
+        app:tint="@color/colorWhite" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_120sdp"
@@ -49,8 +62,8 @@
                     android:imeOptions="actionSearch"
                     android:maxLength="10"
                     android:maxLines="1"
-                    android:singleLine="true"
                     android:padding="@dimen/_8sdp"
+                    android:singleLine="true"
                     android:textColor="@color/colorWhite"
                     android:textColorHint="@color/LightBackground"
                     android:textSize="@dimen/_14ssp" />
