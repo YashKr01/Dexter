@@ -4,6 +4,7 @@ class Constants {
 
     companion object {
         const val BASE_URL = "https://remotive.io/api/"
+        const val DATABASE_NAME = "Dexter"
     }
 
 }
