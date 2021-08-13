@@ -18,6 +18,7 @@ import com.example.dexter.listeners.ItemClickListener
 import com.example.dexter.model.JobEntity
 import com.example.dexter.utils.NetworkUtils
 import com.example.dexter.viewmodels.JobViewModel
+import com.example.dexter.viewmodels.SavedJobViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +28,7 @@ class HomeFragment : Fragment(), ItemClickListener {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<JobViewModel>()
+    private val savedJobsViewModel by viewModels<SavedJobViewModel>()
 
     private var visible = false
 
@@ -106,6 +108,7 @@ class HomeFragment : Fragment(), ItemClickListener {
     }
 
     override fun onCheckboxClicked(jobEntity: JobEntity) {
+        savedJobsViewModel.insertJob(jobEntity)
     }
 
     override fun onDelete(jobEntity: JobEntity) {

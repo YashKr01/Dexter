@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.dexter.model.JobEntity
 import com.example.dexter.model.JobResponse
 import com.example.dexter.repository.AppRepository
+import com.example.dexter.repository.DatabaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -15,7 +16,9 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class JobViewModel @Inject constructor(private val repository: AppRepository) : ViewModel() {
+class JobViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
     private var jobList = MutableLiveData<List<JobEntity>>()
 
@@ -32,5 +35,6 @@ class JobViewModel @Inject constructor(private val repository: AppRepository) : 
     }
 
     fun observeList(): LiveData<List<JobEntity>> = jobList
+
 
 }
