@@ -2,7 +2,6 @@ package com.example.dexter.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.dexter.api.ApiInterface
 import com.example.dexter.database.JobDao
 import com.example.dexter.database.JobDatabase
