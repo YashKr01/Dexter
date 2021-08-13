@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dexter.adapters.JobAdapter
+import com.example.dexter.adapters.SavedJobAdapter
 import com.example.dexter.databinding.FragmentSavedBinding
 import com.example.dexter.listeners.ItemClickListener
+import com.example.dexter.listeners.SavedJobItemClickListener
 import com.example.dexter.model.JobEntity
 import com.example.dexter.viewmodels.SavedJobViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SavedFragment : Fragment(), ItemClickListener {
+class SavedFragment : Fragment(), SavedJobItemClickListener {
 
     private var _binding: FragmentSavedBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +35,7 @@ class SavedFragment : Fragment(), ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val savedJobsAdapter = JobAdapter(requireContext(), ArrayList(), this)
+        val savedJobsAdapter = SavedJobAdapter(requireContext(), ArrayList(), this)
 
         binding.savedJobsRecyclerView.apply {
             setHasFixedSize(true)
@@ -46,16 +48,12 @@ class SavedFragment : Fragment(), ItemClickListener {
 
     }
 
-    override fun onItemClicked(jobEntity: JobEntity) {
-
+    override fun onDeleteJob(jobEntity: JobEntity) {
+        viewModel.deleteJob(jobEntity)
     }
 
-    override fun onCheckboxClicked(jobEntity: JobEntity) {
-
+    override fun onItemClickListener(jobEntity: JobEntity) {
     }
 
-    override fun onDelete(jobEntity: JobEntity) {
-
-    }
 
 }

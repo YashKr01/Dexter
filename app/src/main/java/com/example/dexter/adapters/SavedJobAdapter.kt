@@ -11,12 +11,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.dexter.R
 import com.example.dexter.databinding.ItemSavedJobBinding
 import com.example.dexter.listeners.ItemClickListener
+import com.example.dexter.listeners.SavedJobItemClickListener
 import com.example.dexter.model.JobEntity
 
 class SavedJobAdapter(
     private val context: Context,
     private val list: ArrayList<JobEntity>,
-    private val listener: ItemClickListener
+    private val listener: SavedJobItemClickListener
 ) :
     ListAdapter<JobEntity, SavedJobAdapter.ItemViewHolder>(ItemComparator()) {
 
@@ -29,8 +30,10 @@ class SavedJobAdapter(
             )
         )
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) =
-        holder.bind(list[position])
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+    }
 
     inner class ItemViewHolder(private val binding: ItemSavedJobBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -38,8 +41,8 @@ class SavedJobAdapter(
         fun bind(job: JobEntity) {
             binding.apply {
 
-                root.setOnClickListener { listener.onItemClicked(job) }
-                imageDelete.setOnClickListener { listener.onDelete(job) }
+                root.setOnClickListener { listener.onItemClickListener(job) }
+                imageDelete.setOnClickListener { listener.onDeleteJob(job) }
                 itemSavedJobTitle.text = job.companyName
                 itemSavedJobCompanyName.text = job.companyName
                 itemJobSavedDate.text = job.date

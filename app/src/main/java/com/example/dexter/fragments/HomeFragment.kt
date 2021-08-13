@@ -14,21 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dexter.R
 import com.example.dexter.adapters.JobAdapter
 import com.example.dexter.databinding.FragmentHomeBinding
-import com.example.dexter.listeners.ItemClickListener
+import com.example.dexter.listeners.JobItemClickListener
 import com.example.dexter.model.JobEntity
 import com.example.dexter.utils.NetworkUtils
 import com.example.dexter.viewmodels.JobViewModel
-import com.example.dexter.viewmodels.SavedJobViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), ItemClickListener {
+class HomeFragment : Fragment(), JobItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<JobViewModel>()
-    private val savedJobsViewModel by viewModels<SavedJobViewModel>()
 
     private var visible = false
 
@@ -58,7 +56,7 @@ class HomeFragment : Fragment(), ItemClickListener {
         }
 
         viewModel.getJobList()
-        viewModel.observeList().observe(viewLifecycleOwner) { jobAdapter.submitList(it) }
+        viewModel.jobList.observe(viewLifecycleOwner) { jobAdapter.submitList(it) }
 
         binding.floatingActionButton.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_savedFragment) }
 
@@ -104,14 +102,17 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     }
 
-    override fun onItemClicked(jobEntity: JobEntity) {
+    override fun onCheckboxCheckedListener(jobEntity: JobEntity) {
+        viewModel.insertJob(jobEntity)
     }
 
-    override fun onCheckboxClicked(jobEntity: JobEntity) {
-        savedJobsViewModel.insertJob(jobEntity)
+    override fun onCheckboxUncheckedListener(jobEntity: JobEntity) {
+
     }
 
-    override fun onDelete(jobEntity: JobEntity) {
+    override fun onJobItemClick(jobEntity: JobEntity) {
+
     }
+
 
 }

@@ -17,10 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class JobViewModel @Inject constructor(
-    private val repository: AppRepository
+    private val repository: AppRepository,
+    private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
 
-    private var jobList = MutableLiveData<List<JobEntity>>()
+    var jobList = MutableLiveData<List<JobEntity>>()
 
     fun getJobList() {
         repository.getJobList("25").enqueue(object : Callback<JobResponse> {
@@ -34,7 +35,11 @@ class JobViewModel @Inject constructor(
         })
     }
 
-    fun observeList(): LiveData<List<JobEntity>> = jobList
+    fun insertJob(jobEntity: JobEntity) =
+        viewModelScope.launch { databaseRepository.insertJob(jobEntity) }
+
+    fun deleteJob(jobEntity: JobEntity) =
+        viewModelScope.launch { databaseRepository.deleteSavedJob(jobEntity) }
 
 
 }

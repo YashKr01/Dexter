@@ -11,12 +11,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.dexter.R
 import com.example.dexter.databinding.ItemJobBinding
 import com.example.dexter.listeners.ItemClickListener
+import com.example.dexter.listeners.JobItemClickListener
 import com.example.dexter.model.JobEntity
 
 class JobAdapter(
     private val context: Context,
     private val list: ArrayList<JobEntity>,
-    private val listener: ItemClickListener
+    private val listener: JobItemClickListener
 ) :
     ListAdapter<JobEntity, JobAdapter.ItemViewHolder>(ItemComparator()) {
 
@@ -35,8 +36,11 @@ class JobAdapter(
         fun bind(job: JobEntity) {
             view.apply {
 
-                root.setOnClickListener { listener.onItemClicked(job) }
-                itemCheckBox.setOnClickListener { listener.onCheckboxClicked(job) }
+                root.setOnClickListener { listener.onJobItemClick(job) }
+                itemCheckBox.setOnClickListener {
+                    if (itemCheckBox.isChecked) listener.onCheckboxCheckedListener(job)
+                    else listener.onCheckboxUncheckedListener(job)
+                }
                 textJobTitle.text = job.title
                 textJobCompanyName.text = job.companyName
                 textJobDate.text = job.date
