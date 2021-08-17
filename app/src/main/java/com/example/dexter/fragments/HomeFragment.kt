@@ -3,6 +3,7 @@ package com.example.dexter.fragments
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ class HomeFragment : Fragment(), JobItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("TAG", "onCreateView: ")
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,15 +50,21 @@ class HomeFragment : Fragment(), JobItemClickListener {
                 else onConnectionUnavailable()
             }
 
+        viewModel.getJobList()
+
         // initialise adapter and recycler view
-        val jobAdapter = JobAdapter(requireContext(), ArrayList(), this)
+        val jobAdapter = JobAdapter(requireContext(), ArrayList(), this, ArrayList())
+
+        viewModel.getSavedJobList().observe(viewLifecycleOwner) {
+            jobAdapter.databaseList = it as ArrayList<JobEntity>
+        }
+
         binding.jobRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             adapter = jobAdapter
         }
 
-        viewModel.getJobList()
         viewModel.jobList.observe(viewLifecycleOwner) { jobAdapter.submitList(it) }
 
         binding.floatingActionButton
@@ -119,6 +127,11 @@ class HomeFragment : Fragment(), JobItemClickListener {
             setBackgroundColor(context.getColor(R.color.colorRed))
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

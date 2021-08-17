@@ -16,7 +16,8 @@ import com.example.dexter.model.JobEntity
 class JobAdapter(
     private val context: Context,
     private val list: ArrayList<JobEntity>,
-    private val listener: JobItemClickListener
+    private val listener: JobItemClickListener,
+    var databaseList: ArrayList<JobEntity>
 ) :
     ListAdapter<JobEntity, JobAdapter.ItemViewHolder>(ItemComparator()) {
 
@@ -25,11 +26,12 @@ class JobAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = getItem(position)
+        holder.view.itemCheckBox.isChecked = databaseList.contains(item)
         holder.bind(item)
     }
 
 
-    inner class ItemViewHolder(private val view: ItemJobBinding) :
+    inner class ItemViewHolder(val view: ItemJobBinding) :
         RecyclerView.ViewHolder(view.root) {
 
         fun bind(job: JobEntity) {
@@ -40,6 +42,7 @@ class JobAdapter(
                     if (itemCheckBox.isChecked) listener.onCheckboxCheckedListener(job)
                     else listener.onCheckboxUncheckedListener(job)
                 }
+
                 textJobTitle.text = job.title
                 textJobCompanyName.text = job.companyName
                 textJobDate.text = job.date
@@ -54,16 +57,18 @@ class JobAdapter(
 
                 if (job.type == "full_time") {
                     textJobType.text = job.type
+
                     textJobType
                         .setTextColor(ContextCompat.getColor(context, R.color.colorGreenDark))
+
                     textJobType.background =
                         ContextCompat.getDrawable(context, R.drawable.text_background_green)
-                }
-
-                else {
+                } else {
                     textJobType.text = job.type
+
                     textJobType
                         .setTextColor(ContextCompat.getColor(context, R.color.colorYellowDark))
+
                     textJobType.background =
                         ContextCompat.getDrawable(context, R.drawable.text_background_yellow)
                 }
