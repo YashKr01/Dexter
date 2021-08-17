@@ -48,6 +48,7 @@ class HomeFragment : Fragment(), JobItemClickListener {
                 else onConnectionUnavailable()
             }
 
+        // initialise adapter and recycler view
         val jobAdapter = JobAdapter(requireContext(), ArrayList(), this)
         binding.jobRecyclerView.apply {
             setHasFixedSize(true)
@@ -58,9 +59,13 @@ class HomeFragment : Fragment(), JobItemClickListener {
         viewModel.getJobList()
         viewModel.jobList.observe(viewLifecycleOwner) { jobAdapter.submitList(it) }
 
-        binding.floatingActionButton.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_savedFragment) }
+        binding.floatingActionButton
+            .setOnClickListener { navigateToSavedJobsFragment() }
 
     }
+
+    private fun navigateToSavedJobsFragment() = findNavController()
+        .navigate(R.id.action_homeFragment_to_savedFragment)
 
     override fun onCheckboxCheckedListener(jobEntity: JobEntity) {
         viewModel.insertJob(jobEntity)
@@ -74,6 +79,7 @@ class HomeFragment : Fragment(), JobItemClickListener {
 
     }
 
+    // if connection is available
     private fun onConnectionAvailable() {
 
         visible = true
@@ -98,6 +104,7 @@ class HomeFragment : Fragment(), JobItemClickListener {
 
     }
 
+    // if connection is not available
     private fun onConnectionUnavailable() {
 
         visible = false
