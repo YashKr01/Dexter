@@ -16,7 +16,7 @@
         android:clickable="true"
         android:contentDescription="@string/app_name"
         android:focusable="true"
-        app:backgroundTint="@color/colorYellowDark"
+        app:backgroundTint="@color/colorRed"
         android:src="@drawable/ic_fab_bookmark"
         app:tint="@color/colorWhite" />
 

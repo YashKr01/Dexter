@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SavedFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimaryBlue"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Saved Jobs" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/savedJobsRecyclerView"
         android:layout_width="0dp"
@@ -14,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:listitem="@layout/item_saved_job" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

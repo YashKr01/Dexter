@@ -42,9 +42,10 @@ class SavedJobAdapter(
 
                 root.setOnClickListener { listener.onItemClickListener(job) }
                 imageDelete.setOnClickListener { listener.onDeleteJob(job) }
-                itemSavedJobTitle.text = job.companyName
+                itemSavedJobTitle.text = job.title
                 itemSavedJobCompanyName.text = job.companyName
                 itemJobSavedDate.text = job.date
+                itemJobSavedSalary.text = job.salary
 
                 Glide.with(context)
                     .load(job.image)
