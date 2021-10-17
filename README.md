@@ -14,6 +14,8 @@
 
 - ROOM database
 - Kotlin Coroutines
+- Navigation Component
+- Dagger Hilt
 - MVVM architecture
 - Retrofit
 - DiffUtil
